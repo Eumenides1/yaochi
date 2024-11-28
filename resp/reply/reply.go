@@ -23,7 +23,7 @@ type BulkReply struct {
 // ToBytes marshal redis.Reply
 func (r *BulkReply) ToBytes() []byte {
 	if len(r.Arg) == 0 {
-		return nullBulkReplyBytes
+		return []byte(string(nullBulkReplyBytes) + CRLF)
 	}
 	return []byte("$" + strconv.Itoa(len(r.Arg)) + CRLF + string(r.Arg) + CRLF)
 }
